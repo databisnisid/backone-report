@@ -104,7 +104,7 @@ class CheckResolutionsChart(Component):
     template_name = 'dashboard/chart_resolutions.html'
 
     def __init__(self):
-        self.model_name = Reasons
+        self.model_name = Resolutions
         self.chart_title = 'Problems Per Resolution'
 
     def get_context_data(self, parent_context):
