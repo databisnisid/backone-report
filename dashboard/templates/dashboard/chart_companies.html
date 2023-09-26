@@ -1,0 +1,49 @@
+{% load i18n wagtailadmin_tags %}
+
+    <section class="panel summary nice-padding" style="margin-bottom: 2em;">
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 25%; text-align: center;">
+                </td>
+                <td style="width: 50%; text-align: center;">
+                    <h1>{{ chart_title }}</h1>
+                        <div>
+                            <canvas id="chart_companies"></canvas>
+                        </div>
+                </td>
+                <td style="width: 25%; text-align: center;">
+                </td>
+            </tr>
+        </table>
+    </section>
+
+{% block extra_js %}
+<script>
+
+const company_ctx1 = document.getElementById('chart_companies').getContext('2d');
+const company_myChart1 = new Chart(company_ctx1, {
+    type: 'pie',
+    data: {
+        labels: [{% for label in chart_data %}'{{ label.name | escape }}',{% endfor %}],
+        datasets: [{
+            label: '# ',
+            data: [{% for label in chart_data %}'{{ label.count }}',{% endfor %}],
+            borderWidth: 1
+        }]
+    },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: false,
+        text: '{{ chart_title }}'
+      }
+    }
+  },
+});
+
+</script>
+{% endblock extra_js %}
