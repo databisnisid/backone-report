@@ -14,7 +14,7 @@ class ProblemsSVS(ModelAdmin):
     chooser_per_page = 10
     list_display = ['ticket_number_with_title', 'tags', 'closed_at', 'duration_text']
     list_filter = ['created_at']
-    search_fields = ['tags']
+    search_fields = ['ticket_number', 'tags']
     readonly_fields = [
             'ticket_number',
             'title',
